@@ -52,6 +52,9 @@ TODO List
  - integrate `orjson` to the project
  - integrate black, isort, pip-tools, flake, pytest, coverage, coverage tracking
  -
+### find solution to serve static files
+ - does not work like with flask =/
+
 ### devops
  - create docker images for the service
  - create a service file
@@ -60,6 +63,8 @@ TODO List
 
 ### deployment
  - rent a vulture VM
+ - get heroku free tier for now
+ - DBaaS for now
 
 ### documentation
  - openapi possible?
