@@ -61,7 +61,17 @@ TODO List
 ### deployment
  - rent a vulture VM
 
+### documentation
+ - openapi possible?
+   https://codesource.io/django-rest-api-documentation-with-swagger-ui/
+ - https://github.com/marcgibbons/django-rest-swagger
+
+### filtering
+ - add filtering for dates
+
 ### testing
+ - initialize testing
+   - in memory postgres via docker
  - try to distinguish unit and integration tests with markers
 
 ### create a loadtest
