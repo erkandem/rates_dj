@@ -6,3 +6,4 @@ flake8
 flake8-isort
 black
 pytest-django
+factory_boy

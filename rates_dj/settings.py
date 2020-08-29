@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "rates",
 ]
 
 MIDDLEWARE = [
@@ -83,6 +85,7 @@ DATABASES = {
         "PASSWORD": env.str("RATES_APP_POSTGRES_PASSWORD"),
         "HOST": env.str("RATES_APP_POSTGRES_HOST"),
         "PORT": env.int("RATES_APP_POSTGRES_PORT"),
+        "TEST": {"NAME": env.str("RATES_APP_POSTGRES_TESTING_DATABASE")},
     }
 }
 
@@ -99,7 +102,13 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
+    ]
+}
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
