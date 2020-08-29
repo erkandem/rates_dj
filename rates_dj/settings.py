@@ -25,9 +25,9 @@ env = environ.Env()
 SECRET_KEY = env.str("RATES_APP_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("RATES_APP_DEBUG")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.str("RATES_APP_ALLOWED_HOSTS", "").split()
 
 
 # Application definition
