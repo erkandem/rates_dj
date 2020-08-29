@@ -1,0 +1,8 @@
+-r common.in
+pip-tools
+pre-commit
+pytest
+flake8
+flake8-isort
+black
+pytest-django

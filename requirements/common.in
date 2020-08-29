@@ -1,0 +1,8 @@
+Django==1.11.29
+django-environ
+djangorestframework==3.11.1
+drf-orjson-renderer
+psycopg2
+
+celery
+redis

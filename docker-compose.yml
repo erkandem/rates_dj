@@ -1,0 +1,15 @@
+version: '3.0'
+services:
+  postgres:
+    build:
+      dockerfile: dockerfiles/postgres/Dockerfile
+      context: .
+    ports:
+      - 5433:5432
+    volumes:
+      - rates_dj2_postgres:/var/lib/postgresql/data
+# docker volume rm ratesdj2_rates_dj2_postgres
+# docker container rm
+# docker image rm
+volumes:
+  rates_dj2_postgres:
