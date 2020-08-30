@@ -4,7 +4,9 @@ djangorestframework==3.11.1
 drf-orjson-renderer
 factory_boy
 psycopg2
+
 gunicorn
+whitenoise
 
 celery
 redis

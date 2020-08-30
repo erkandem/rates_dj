@@ -96,3 +96,7 @@ TODO List
       - cache should be invalidated after rates have been updated
 
   - create a subscription page to distribute access
+
+### error pages
+  - add static 404 page
+  - add static 5XX page
