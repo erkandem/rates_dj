@@ -10,5 +10,5 @@ class EcbRatesView(ModelViewSet):
     https://www.django-rest-framework.org/api-guide/filtering/
     """
 
-    queryset = ECBRate.objects.all()
+    queryset = ECBRate.objects.all().order_by('-dt')
     serializer_class = ECBRateSerializer
