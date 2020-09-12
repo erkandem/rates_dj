@@ -2,7 +2,7 @@ from django.test import TestCase
 import pytest
 from rest_framework import status
 
-from .models import ECBRateFactory
+from .factorys import ECBRateFactory
 from .serializers import ECBRateSerializer
 
 

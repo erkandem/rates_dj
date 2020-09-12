@@ -1,7 +1,4 @@
-from datetime import date
-
 from django.db import models
-import factory
 
 
 class ECBRateDetailsMixin:
@@ -74,21 +71,3 @@ class ECBRate(ECBRateDetailsMixin, models.Model):
     rate_10y = models.FloatField()
     rate_15y = models.FloatField()
     rate_30y = models.FloatField()
-
-
-class ECBRateFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = ECBRate
-
-    dt = date(2019, 1, 1)
-    rate_3m = 0.01
-    rate_4m = 0.01
-    rate_6m = 0.01
-    rate_9m = 0.01
-    rate_1y = 0.01
-    rate_2y = 0.01
-    rate_5y = 0.01
-    rate_7y = 0.01
-    rate_10y = 0.01
-    rate_15y = 0.01
-    rate_30y = 0.01
