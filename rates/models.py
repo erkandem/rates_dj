@@ -2,18 +2,22 @@ from django.db import models
 
 
 class ECBRateDetailsMixin:
-    ECB_RATE_3M = "ECB_3M"
-    ECB_RATE_4M = "ECB_4M"
-    ECB_RATE_6M = "ECB_6M"
-    ECB_RATE_9M = "ECB_9M"
-    ECB_RATE_1Y = "ECB_1Y"
-    ECB_RATE_2Y = "ECB_2Y"
-    ECB_RATE_5Y = "ECB_5Y"
-    ECB_RATE_7Y = "ECB_7Y"
-    ECB_RATE_10Y = "ECB_10Y"
-    ECB_RATE_15Y = "ECB_15Y"
-    ECB_RATE_30Y = "ECB_30Y"
-
+    """
+    container to include string literals, keys, mappings and
+    frequently used groupings thereof
+    """
+    ECB_RATE_PK = 'dt'
+    ECB_RATE_3M = "rate_3m"
+    ECB_RATE_4M = "rate_4m"
+    ECB_RATE_6M = "rate_6m"
+    ECB_RATE_9M = "rate_9m"
+    ECB_RATE_1Y = "rate_1y"
+    ECB_RATE_2Y = "rate_2y"
+    ECB_RATE_5Y = "rate_5y"
+    ECB_RATE_7Y = "rate_7y"
+    ECB_RATE_10Y = "rate_10y"
+    ECB_RATE_15Y = "rate_15y"
+    ECB_RATE_30Y = "rate_30y"
     ECB_RATE_KEYS = [
         ECB_RATE_3M,
         ECB_RATE_4M,
@@ -27,6 +31,7 @@ class ECBRateDetailsMixin:
         ECB_RATE_15Y,
         ECB_RATE_30Y,
     ]
+    ECB_RATE_FIELDS = [ECB_RATE_PK] + ECB_RATE_KEYS
 
     ECB_RATES_ECB_WAREHOUSE_MAPPING = {
         ECB_RATE_3M: "YC/B.U2.EUR.4F.G_N_A.SV_C_YM.PY_3M",
@@ -57,7 +62,13 @@ class ECBRateDetailsMixin:
     }
 
 
-class ECBRate(ECBRateDetailsMixin, models.Model):
+class ECBRate(
+    ECBRateDetailsMixin,
+    models.Model
+):
+    """
+    Model interact with ECB risk free rate data
+    """
 
     dt = models.DateField(primary_key=True)
     rate_3m = models.FloatField()
