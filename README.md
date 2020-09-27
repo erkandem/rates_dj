@@ -1,14 +1,21 @@
 # a django rates app
 
+app to collect and redistribute interest rate data from django  
+and then migrate through all versions currently at 3.1
+
 
 # TODO List
 
-## Backend:q
+## Backend
 
 ### core
- - create a backend to query the ECB data warehouse and
-   feed the results into the database
-
+ - ~~create a backend to query the ECB data warehouse and~~
+   ~~feed the results into the database~~ (issue-11)
+ - same for USD
+ - same for JPY?
+ - CHF?
+ - GBP?
+ 
  - create a celery task which to execute the rate retrieval
     subtask:
       - pick a redis docker image
@@ -17,9 +24,6 @@
       - https://medium.com/swlh/python-developers-celery-is-a-must-learn-technology-heres-how-to-get-started-578f5d63fab3
 
  - ~~create a docker based database for postgres~~ (done)
-  - during that, try to create an in memory database
-  - due to volatile disc, the data should be saved regularly to disc
-
  - ~~environment variable based settings~~ (inplace since yesterday)
 
  - create the API endpoint to retrieve
@@ -29,7 +33,7 @@
      - ~~one row one column (dt, 30y)~~ (see issue-5)
      - one row multiple columns (dt, 1y) (dt, 30y)
    - rate differences
-      - one record (column_a - column_b)
+      - one record dt (column_a - column_b)
 
    - provide the selection of maturity and date
      - as data/body
@@ -42,10 +46,13 @@
    - set access allow origin headers, such that the front end
      can query for the latest rate
 
+#
 ### packages
  - integrate `orjson` to the project
- - integrate ~~black~~, ~~isort~~, ~~pip-tools~~, ~~flake~~, ~~pytest~~, coverage, coverage tracking
+ - integrate  coverage, ~~black~~, ~~isort~~, ~~pip-tools~~, ~~flake~~, ~~pytest~~,
+ - add coverage rate tracking
  -
+ 
 ### find solution to serve static files
  - ~~does not work like with flask~~ =/ (whitenoise for now)
  - serve statics via nginx
