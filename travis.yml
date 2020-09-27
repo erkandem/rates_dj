@@ -1,0 +1,25 @@
+language: python
+
+addons:
+  postgresql: "13"
+  apt:
+    packages:
+    - postgresql-13
+    - postgresql-client-13
+
+env:
+  global:
+  - PGPORT=5433
+  - PGPASSWORD=postgres
+
+python:
+  - "3.6"
+
+install:
+  - make install-test
+
+before_script:
+  - psql -f init.sql
+
+script:
+  - pytest -v
