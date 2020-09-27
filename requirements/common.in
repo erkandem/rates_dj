@@ -4,6 +4,8 @@ djangorestframework==3.11.1
 drf-orjson-renderer
 factory_boy
 psycopg2
+certifi
+urllib3
 
 gunicorn
 whitenoise
