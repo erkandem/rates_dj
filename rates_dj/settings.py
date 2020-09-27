@@ -27,7 +27,7 @@ SECRET_KEY = env.str("RATES_APP_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("RATES_APP_DEBUG")
 
-ALLOWED_HOSTS = env.str("RATES_APP_ALLOWED_HOSTS", "").split()
+ALLOWED_HOSTS = env.str("RATES_APP_ALLOWED_HOSTS", "").split(',')
 
 
 # Application definition
@@ -86,7 +86,9 @@ DATABASES = {
         "PASSWORD": env.str("RATES_APP_POSTGRES_PASSWORD"),
         "HOST": env.str("RATES_APP_POSTGRES_HOST"),
         "PORT": env.int("RATES_APP_POSTGRES_PORT"),
-        "TEST": {"NAME": env.str("RATES_APP_POSTGRES_TESTING_DATABASE")},
+        "TEST": {
+            "NAME": env.str("RATES_APP_POSTGRES_TESTING_DATABASE")
+        },
     }
 }
 
