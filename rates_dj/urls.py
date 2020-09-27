@@ -20,6 +20,7 @@ from django.conf.urls import (
 from django.contrib import admin
 
 urlpatterns = [
+    url(r"^", include("landing.urls")),
     url(r"^api/v1/rates/", include("rates.urls")),
     url(r"^api-auth/", include("rest_framework.urls")),
     url(r"^admin/", admin.site.urls, "admin-landing-page"),

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>RFR Web App</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous"/>
+
+      <link rel="stylesheet" href="static/landing/css/sakura.css">
+      <link rel="stylesheet" href="static/landing/css/basic.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/1.47.4/plotly.min.js" integrity="sha256-H/OgTJu16926oS2asyDpBQkSsZym43jAaWRoCBoRQeI=" crossorigin="anonymous"></script>
+
+   </head>
+   <body>
+      <div class="container">
+         <h2> What's the risk free rate for the euro area like?</h2>
+         <div id="curve-plot"></div>
+         <div>
+            <p>Get the data of the plot above and more as simple as:</p>
+            <pre id="command"> </pre>
+
+            <h3> Get the data</h3>
+            <p> Browse the API with its user interface </p>
+            <div style="text-align: center">
+         <!--   <button type="button" style="margin: 10px"><a style="color: #f9f9f9" href="/swaggerui">Interactive UI</a></button> -->
+         <!--   <button type="button" style="margin: 10px"><a style="color: #f9f9f9" href="/redoc">Documentation</a></button> -->
+            </div>
+            <p> Currently, there is no authentication required to use it.
+               Likewise the API comes with absolutely no warranty. </p>
+            <h3> About </h3>
+            <p>
+               Many pricing or valuation methods require a reference rate to be feed into the calculation.
+               In option pricing this rate is referenced to as the <code>risk free rate</code>. At his point
+               I would like to spare out the discussion whether this rate is 'free of risk'.
+               It is common to use government bond yields of the specific currency as proxy for the risk free rate.
+            </p>
+            <p>
+               These calculations are usually done by the respective central bank or government treasury department.
+               In case of the Unites States these data sets can be fetched with a single query via Quandl or at the Treasury itself.
+            </p>
+            <p>
+               While the Euro Area has a similar service it is hideous to work with and agonizingly slow for
+               usages like a basic lookup. I usually went to query a year of data upfront, cache it and query the cache.
+               Well, then just build a database around the cache and ... and make it public.
+            </p>
+            <h3> Note </h3>
+            <p>
+               The data itself is not changed. You can read more about the methodology at the ECB Warehouse at <strong>LINK</strong>
+            <p>
+         </div>
+      </div>
+      <script>
+         curve_plot = document.getElementById('curve-plot');
+         // Get the data from the API
+         var xhr = new XMLHttpRequest();
+         var data = {};
+         var apiUrl = 'api/v1/rates/ecb/';
+         var command = 'curl ' + "'" + document.location + apiUrl + "'";
+         var first;
+         document.getElementById('command').textContent = command;
+         xhr.open('GET', apiUrl);
+         xhr.send();
+         xhr.onload = function() {
+             if (xhr.status != 200) {
+                 console.log('could ot fetch rates')
+             } else {
+                 data = JSON.parse(xhr.responseText);
+                 first = data.results[0]
+               // format the data
+               var xValues = [
+                   3/12,
+                   4/12,
+                   6/12,
+                   9/12,
+                   1,
+                   2,
+                   5,
+                   7,
+                   10,
+                   15,
+                   30
+               ];
+               var yValues = [
+                       first['rate_3m'],
+                       first['rate_4m'],
+                       first['rate_6m'],
+                       first['rate_9m'],
+                       first['rate_1y'],
+                       first['rate_2y'],
+                       first['rate_5y'],
+                       first['rate_7y'],
+                       first['rate_10y'],
+                       first['rate_15y'],
+                       first['rate_30y']
+               ];
+               var trace = [{
+                  x: xValues,
+                  y: yValues,
+                 line: {dash: 'dashdot'}
+               }];
+               var layout = {
+                     height: 350,
+                     title: {text: 'Euro area yield curve as of ' +  first['dt']},
+                     xaxis: {
+                         title: {
+                             text: 'duration'
+                         },
+                         tickvals: xValues,
+                         ticktext: [
+                             '3m', '4m', '6m', '9m', '1y', '2y', '5y', '7y', '10y', '15y', '30y'
+                         ],
+                         type: 'log'
+                     },
+                     yaxis: {title: {text: '% p.a.'}, hoverformat: '.3f'}
+               };
+               // basic syntax: Plotly.plot(id, data, layout);
+               Plotly.plot(
+                   curve_plot,
+                   trace,
+                   layout,
+                   {showSendToCloud: false}
+               );
+             }
+         };
+      </script>
+   </body>
+</html>
