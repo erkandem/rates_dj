@@ -30,10 +30,10 @@ TODO List
 
  - create the API endpoint to retrieve
    - data as is
-     - one row: dt, (1y, 2y, 3y, ... 30y)
-     - multiple rows: dt, (1y, 2y, 3y, ... 30y)
-     - a partial row (dt, 30y) (dt, 5y)
-     -
+     - one row all columns: dt, (1y, 2y, 3y, ... 30y)
+     - multiple rows all columns: dt, (1y, 2y, 3y, ... 30y)
+     - ~~one row one column (dt, 30y)~~ (see issue-5)
+     - one row multiple columns (dt, 1y) (dt, 30y)
    - rate differences
       - one record (column_a - column_b)
 
