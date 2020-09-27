@@ -50,7 +50,7 @@ TODO List
 
 ### packages
  - integrate `orjson` to the project
- - integrate black, isort, pip-tools, flake, pytest, coverage, coverage tracking
+ - integrate ~~black~~, ~~isort~~, ~~pip-tools~~, ~~flake~~, ~~pytest~~, coverage, coverage tracking
  -
 ### find solution to serve static files
  - does not work like with flask =/
@@ -72,12 +72,12 @@ TODO List
  - https://github.com/marcgibbons/django-rest-swagger
 
 ### filtering
- - add filtering for dates
+ - ~~add filtering for dates~~ (see issue-7)
 
 ### testing
- - initialize testing
+ - ~~initialize testing~~ (see issue-9)
    - in memory postgres via docker
- - try to distinguish unit and integration tests with markers
+ - ~~try to distinguish unit and integration tests with markers~~ (added `integration_test` marker to `pytest.ini`)
 
 ### create a loadtest
 
