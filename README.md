@@ -63,8 +63,8 @@ TODO List
 
 ### deployment
  - rent a vulture VM
- - get heroku free tier for now
- - DBaaS for now
+ - ~~get heroku free tier for now~~ (https://django-rates.herokuapp.com)
+ - ~~DBaaS for now~~ (elephantsql.com)
 
 ### documentation
  - openapi possible?
